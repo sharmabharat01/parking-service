@@ -1,0 +1,17 @@
+package com.liveparking.parkingservice;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+@EnableScheduling
+public class ParkingServiceApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(
+                ParkingServiceApplication.class,
+                args
+        );
+    }
+}

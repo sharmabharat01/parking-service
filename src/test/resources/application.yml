@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: parking-service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/parking}
+    username: ${SPRING_DATASOURCE_USERNAME:parking}
+    password: ${SPRING_DATASOURCE_PASSWORD:parking}
+
+  jpa:
+    open-in-view: false
+
+  flyway:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+parking:
+
+  static-api:
+    base-url: ${PARKING_STATIC_API_BASE_URL:https://data.gov.sg}
+    resource-id: ${PARKING_STATIC_API_RESOURCE_ID:d_23f946fa557947f93a8043bbef41dd09}
+
+  live-api:
+    base-url: ${PARKING_LIVE_API_BASE_URL:https://api.data.gov.sg}
+    connect-timeout-ms: ${PARKING_LIVE_API_CONNECT_TIMEOUT_MS:2000}
+    read-timeout-ms: ${PARKING_LIVE_API_READ_TIMEOUT_MS:5000}
+    max-attempts: ${PARKING_LIVE_API_MAX_ATTEMPTS:3}
+    initial-backoff-ms: ${PARKING_LIVE_API_INITIAL_BACKOFF_MS:500}
+
+  availability:
+    scheduler-enabled: false
+    sync-interval-ms: ${PARKING_AVAILABILITY_SYNC_INTERVAL_MS:60000}
+    stale-after-seconds: ${PARKING_AVAILABILITY_STALE_AFTER_SECONDS:300}
+    max-search-radius-meters: ${PARKING_MAX_SEARCH_RADIUS_METERS:5000}
